@@ -10,7 +10,8 @@ router.register(r'api/v1/posts/{post_id}/', PostViewSet)
 router.register(r'api/v1/groups/', GroupViewSet)
 router.register(r'api/v1/groups/{group_id}/', GroupViewSet)
 router.register(r'api/v1/posts/{post_id}/comments/', CommentViewSet)
-router.register(r'api/v1/posts/{post_id}/comments/{comment_id}/', CommentViewSet)
+router.register(r'api/v1/posts/{post_id}/comments/{comment_id}/',
+                CommentViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
