@@ -6,7 +6,7 @@ from .serializers import CommentSerializer, GroupSerializer, PostSerializer
 from rest_framework.permissions import IsAuthenticated
 
 
-class IsAuthorOrReadOnly(permissions.BasePermission):
+class AreYouWorthy(permissions.BasePermission):
     message = 'Пользователь может менять только свой контент!'
 
     def has_object_permission(self, request, view, obj):
@@ -23,7 +23,7 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
-    permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
+    permission_classes = [IsAuthenticated, AreYouWorthy]
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
@@ -31,7 +31,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
 class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
-    permission_classes = [IsAuthenticated, IsAuthorOrReadOnly]
+    permission_classes = [IsAuthenticated, AreYouWorthy]
 
     def get_queryset(self):
         post = get_object_or_404(Post, pk=self.kwargs.get('post_id'))
