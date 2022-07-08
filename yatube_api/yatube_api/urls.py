@@ -8,8 +8,12 @@ from rest_framework.authtoken import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
-    path('api/v1/api-token-auth/', views.obtain_auth_token),
+    path('api/v1/api-token-auth/', views.obtain_auth_token), 
 ]
+''' 
+Не получается импортировать библиотеку simple-jwt,
+pytest выбевает ошибки
+'''
 
 
 if settings.DEBUG:
